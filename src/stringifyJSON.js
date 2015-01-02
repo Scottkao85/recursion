@@ -30,16 +30,16 @@ var stringifyJSON = function(obj) {
     var count = 0; 
     result = "{";
     for(var key in obj){
-      if(count === 0){
-        result = result + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
-      }else{
-        result = result + "," + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
-      }
+      if(typeof obj[key] !== "function" && typeof obj[key] !== "undefined"){
+        if(count === 0){
+          result = result + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
+        }else{
+          result = result + "," + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
+        }
       count++;
+      }
     }
-    result = result + "}";
-    
+    result = result + "}"; 
   }
-    console.log("this is RESUlT: ", result);
   return result;
 }
