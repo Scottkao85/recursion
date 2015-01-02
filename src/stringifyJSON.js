@@ -26,6 +26,20 @@ var stringifyJSON = function(obj) {
       }
     } 
     result = result + "]"
+  }else if(typeof obj === "object"){
+    var count = 0; 
+    result = "{";
+    for(var key in obj){
+      if(count === 0){
+        result = result + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
+      }else{
+        result = result + "," + stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
+      }
+      count++;
+    }
+    result = result + "}";
+    
   }
+    console.log("this is RESUlT: ", result);
   return result;
 }
