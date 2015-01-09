@@ -17,15 +17,19 @@ var stringifyJSON = function(obj) {
   }else if(typeof obj === "string"){
     result =  "\"" + obj + "\"" ;
   }else if(Array.isArray(obj) === true){
+    var temp = []
     result = "[";
     for(var i = 0; i < obj.length; i++){
-      if(i === 0){
+      temp.push(stringifyJSON(obj[i])); // [1, 2, 3, 4]
+      /*if(i === 0){
         result = result + stringifyJSON(obj[i])
       }else{ 
-        result = result + "," + stringifyJSON(obj[i])
-      }
+        result = result + " " + stringifyJSON(obj[i])
+      } */
     } 
-    result = result + "]"
+    result = result + temp.join(","); //"["[] 
+    result = result + "]" 
+    
   }else if(typeof obj === "object"){
     var count = 0; 
     result = "{";
